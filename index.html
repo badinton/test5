@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Exam5    </title>
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    </style>
+
+</head>
+
+<body id="page-top">
+<div>
+    <div>
+        <table style="width:100%">
+  <tr>
+    <th>Emp ID</th>
+    <th>Emp Name</th> 
+    <th>Emp City</th>
+    <th>Emp Salary</th>
+  </tr>
+    </tr>
+  <tr>
+  <div id ='first'>
+    <td><div id='detailempid'></div></td>
+    <td><div id='detailempname'></div></td>
+    <td><div id='detailempcity'></div></td>
+    <td><div id='detailempsalary'></div></td>
+    <td><div id='detailempbtn'></div></td>
+</div>
+  </tr>
+  
+</table>
+
+    </div>
+</div>
+<div style="margin-top: 3%">
+    Customer Detail<br>
+    Emp <input type="number" id="empindex"><br>
+    EmpName <input type="text" id="empname" ><br>
+    EmpCity <input type="text" id="empcity"><br>
+    EmpSalary <input type="text" id="empsalary"><br>
+    <button style="margin-left:2%" id="btnadd">add</button>
+    <button style="margin-left:2%" id="btnupdate">update</button>
+    <button style="margin-left:2%" id="btncancel">cancel</button>
+      <input type="hidden" class="btndelete">
+
+    <script>
+    var arrayemp = [];
+    var arraycity = [];
+    var arraysalary = [];
+    var arrayname = [];
+    var found= false;
+    var index;
+        document.getElementById('btnadd').addEventListener('click', function() {
+    arrayemp.push(document.getElementById("empindex").value);
+    arraycity.push(document.getElementById("empcity").value);
+    arraysalary.push(document.getElementById("empsalary").value)
+    arrayname.push(document.getElementById("empname").value)
+        clearing();
+         });
+        document.getElementById('btnupdate').addEventListener('click', function() {
+        
+           for (var i = 0; i < arrayemp.length; i++) {
+                if(arrayemp[i] == document.getElementById("empindex").value){
+                    found = true;
+                    index = i;
+                }}
+            
+                if(found){
+                    arrayemp[index] = document.getElementById("empindex").value;
+                    arraycity[index] = document.getElementById("empcity").value
+                    arraysalary[index] = document.getElementById("empsalary").value
+                    arrayname[index] = document.getElementById("empname").value
+                    found = false;
+                clearing();
+                }
+                else{
+                    alert('Not find index Emp')
+                }
+           
+         });
+        document.getElementById('btncancel').addEventListener('click', function() {
+                    document.getElementById("empindex").value = '';
+                    document.getElementById("empcity").value  = '';
+                    document.getElementById("empsalary").value = '';
+                    document.getElementById("empname").value = '';
+                      });
+            function showemp(){
+         for (var i = 0; i < arrayemp.length; i++) {
+            if(arrayemp[i]){
+        document.getElementById("detailempid").append(arrayemp[i]+'<br>')
+        document.getElementById("detailempname").append(arrayname[i]+'<br>')
+        document.getElementById("detailempcity").append(arraycity[i]+'<br>')
+        document.getElementById("detailempsalary").append(arraysalary[i]);
+        document.getElementById("detailempbtn").append('<button id ="'+i+'" class="btndelete">delete</button>');
+            }
+            }
+};
+function clearing(){
+        $("#detailempid").html('')
+        $("#detailempname").html('')
+        $("#detailempcity").html('')
+        $("#detailempsalary").html('');
+        $("#detailempbtn").html('');
+        showemp();
+}
+
+            $(".btndelete").click(function() {
+             indexdelete = this.id;
+             arrayemp[indexdelete] = '';
+             arraysalary[indexdelete] = '';
+             arraycity[indexdelete] = '';
+             arrayname[indexdelete] = '';    
+            });
+
+
+    </script>
+</div>
+   <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
+
+</body>
+
+</html>
